@@ -1,4 +1,4 @@
-task: sciq
+task: open_sciq
 dataset_path: sciq
 dataset_name: null
 output_type: multiple_choice
