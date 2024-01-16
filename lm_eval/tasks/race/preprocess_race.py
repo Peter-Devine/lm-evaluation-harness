@@ -34,6 +34,20 @@ def doc_to_text(doc):
     return text
 
 
+def open_doc_to_text(doc):
+    # text = "Article: " + doc["article"] + "\n\n"
+    text = ""
+    for problem in process_ast(doc["problems"])[:-1]:
+        if problem["question"][-6:] == "  _  .":
+            text += problem["question"][-5:] + get_answer_option(problem) + "\n"
+        else:
+            question = "Question: " + problem["question"] + "\n"
+            answer = "Answer: " + get_answer_option(problem) + "\n"
+            text += question + answer
+    text += last_problem(doc)["question"]
+    return text
+
+
 def doc_to_target(doc):
     letter_to_num = {"A": 0, "B": 1, "C": 2, "D": 3}
     answer = letter_to_num[last_problem(doc)["answer"]]
